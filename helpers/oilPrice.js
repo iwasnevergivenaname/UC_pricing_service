@@ -7,7 +7,7 @@ const oilPriceEndpoint = process.env.NODE_API_ENDPOINT
 async function getOilPrice() {
   try {
     const priceRes = await axios.get(oilPriceEndpoint, {headers: {'Authorization': `Token ${key}`, 'Content-Type': 'application/json'}})
-    console.log(priceRes.data.data)
+    delete priceRes.data.data.formatted
     return priceRes.data.data
   } catch (e) {
     console.log(e)
