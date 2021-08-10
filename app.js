@@ -1,14 +1,9 @@
-const express = require('express')
+const express = require("express")
+require("dotenv").config()
+const estimationRoutes = require("./routes/estimate")
 const app = express()
 
-app.post("/", (req, res) => {
-  const body = req.body
 
-})
-
-app.get("/", (req, res) => {
-  res.send("health check")
-  }
-)
+app.use("/estimate", estimationRoutes)
 
 module.exports = app
