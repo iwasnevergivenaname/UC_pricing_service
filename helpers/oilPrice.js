@@ -4,8 +4,6 @@ require('dotenv').config({ path: '../.env' })
 const key = process.env.NODE_API_KEY
 const oilPriceEndpoint = process.env.NODE_API_ENDPOINT
 
-console.log(key, process.env.NODE_API_ENDPOINT)
-
 async function getOilPrice() {
   try {
     const priceRes = await axios.get(oilPriceEndpoint, {headers: {'Authorization': `Token ${key}`, 'Content-Type': 'application/json'}})
@@ -14,7 +12,7 @@ async function getOilPrice() {
   } catch (e) {
     console.log(e)
   }
-
 }
 
-console.log(getOilPrice())
+// console.log(getOilPrice())
+module.exports = getOilPrice
