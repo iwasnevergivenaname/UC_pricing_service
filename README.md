@@ -2,8 +2,8 @@
 takes in data {pickup, dropoff} and returns a price estimation based on current time and crude oil prices
 
 ### endpoints
-GET /estimate - health check <br>
-POST /estimate - expects pickup and dropoff locations in body, returns price estimation
+GET /estimate - expects pickup and dropoff locations in body, returns price estimation
+GET /estimate/health - health check <br>
 
 ### stack
 express<br>

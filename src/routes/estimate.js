@@ -1,15 +1,18 @@
 const express = require("express")
-const {BadRequestError} = require("../expressError")
-const getOilPrice = require("../helpers/oilPrice")
+const getOilPrice = require("../external/oil.price")
 const router = new express.Router()
 
 const date = new Date()
 const hour = date.getHours()
 
+router.get("/health", (req, res) => {
+  return res.sendStatus(200)
+})
+
 router.post("/", async (req, res) => {
   const body = req.body
   if (!body) {
-    throw new BadRequestError("pickup and dropoff locations needed")
+    res.sendStatus(400)
   }
   const curPrice = await getOilPrice()
   const p = curPrice.price
@@ -17,12 +20,12 @@ router.post("/", async (req, res) => {
   if (hour === 7 || hour === 17) {
     curPrice.price = p * 2
   }
-  return res.json({curPrice})
+
+
+  return res.json({
+    estimate: curPrice.price
+  })
 })
 
-router.get("/", (req, res) => {
-    return res.sendStatus(200)
-  }
-)
 
 module.exports = router
